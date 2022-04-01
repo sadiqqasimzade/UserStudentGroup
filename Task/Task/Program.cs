@@ -32,7 +32,7 @@ namespace Task
                                         Console.WriteLine(student);
                                     break;
                                 case 2:
-                                    IdInput(out short id);
+                                    IdInput(out int? id);
                                     try
                                     {
                                         Console.WriteLine(group.GetStudent(id));
@@ -125,34 +125,36 @@ namespace Task
         //UserTask
         static void UserTask()
         {
-            User user1, user2;
+            User[] users = new User[0];
+            sbyte choise;
+            do
+            {
+                ChoiseInput("-----------\n1)Add User\n2)End\nChoise:", out choise);
+
+                if (choise==1)
+                {
+                    Array.Resize(ref users, users.Length + 1);
+                    CreateUser(users);
+                }
+            } while (choise!=2);
+            foreach (var user in users)
+                Console.WriteLine(user);
+        }
+
+        static void CreateUser(User[] users)
+        {
         User1Point:
             try
             {
                 Console.WriteLine("User 1:");
-                user1 = new User(StringInput("Email"), PasswordInput());
+                users[users.Length-1] = new User(StringInput("Email"), PasswordInput());
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 goto User1Point;
             }
-        User2Point:
-            try
-            {
-                Console.WriteLine("User 2:");
-                user2 = new User(StringInput("FullName"), StringInput("Email"), PasswordInput());
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                goto User2Point;
-            }
-
-            user1.ShowInfo();
-            user2.ShowInfo();
         }
-
         //CreateGroup
         static void CreateGroup(out Group group)
         {
@@ -185,7 +187,7 @@ namespace Task
         }
 
         //IdInput
-        static void IdInput(out short id)
+        static void IdInput(out int? id)
         {
             do
             {
