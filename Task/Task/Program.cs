@@ -10,7 +10,7 @@ namespace Task
             sbyte choise;
             do
             {
-                ChoiseInput("-----------------------\n1)Create 2 users and Show Info\n2)Create new group\nChoise:", out choise);
+                ChoiseInput("-----------------------\n1)User task\n2)Create new group\nChoise:", out choise);
                 switch (choise)
                 {
                     case 0: break;
@@ -129,7 +129,7 @@ namespace Task
             sbyte choise;
             do
             {
-                ChoiseInput("-----------\n1)Add User\n2)End\nChoise:", out choise);
+                ChoiseInput("-----------\n1)Add User\n2)End and Show Info\nChoise:", out choise);
 
                 if (choise==1)
                 {
@@ -138,7 +138,7 @@ namespace Task
                 }
             } while (choise!=2);
             foreach (var user in users)
-                Console.WriteLine(user);
+                user.ShowInfo();
         }
 
         static void CreateUser(User[] users)
@@ -146,7 +146,7 @@ namespace Task
         User1Point:
             try
             {
-                Console.WriteLine("User 1:");
+                Console.WriteLine("User:"+users.Length);
                 users[users.Length-1] = new User(StringInput("Email"), PasswordInput());
             }
             catch (Exception ex)
