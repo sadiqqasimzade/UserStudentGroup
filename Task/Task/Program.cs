@@ -241,13 +241,18 @@ namespace Task
                     int upperCounter = 0;
                     int digitCounter = 0;
                     for (int i = 0; i < 2; i++)
+                    {
                         if (char.IsUpper(groupNo[i])) upperCounter++;
-
+                        else continue;
+                    }
                     if (upperCounter == 2)
                     {
                         for (int i = 2; i < 5; i++)
+                        {
                             if (char.IsDigit(groupNo[i]))
                                 digitCounter++;
+                            else continue;
+                        }
                     }
                     else continue;
                     if (digitCounter == 3) return groupNo;

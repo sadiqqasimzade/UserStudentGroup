@@ -42,13 +42,18 @@ namespace Task.Models
                 int upperCounter = 0;
                 int digitCounter = 0;
                 for (int i = 0; i < 2; i++)
+                {
                     if (char.IsUpper(groupNo[i])) upperCounter++;
-
+                    else return false;
+                }
                 if (upperCounter == 2)
                 {
                     for (int i = 2; i < 5; i++)
+                    {
                         if (char.IsDigit(groupNo[i]))
                             digitCounter++;
+                        else return false;
+                    }
                 }
                 else return false;
                 if (digitCounter == 3) return true;
